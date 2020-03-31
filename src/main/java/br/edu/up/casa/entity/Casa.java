@@ -2,20 +2,21 @@ package br.edu.up.casa.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
-@Table(name = "pessoa")
-public class Pessoa implements Serializable{
+@Table(name = "casa")
+public class Casa implements Serializable {
 
 	/**
 	 * 
@@ -27,46 +28,33 @@ public class Pessoa implements Serializable{
 	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name = "nome")
-	private String nome;
+	@Column(name = "numero")
+	private int numero;
 	
-	@Column(name = "email")
-	private String email;
-	
-	@Column(name = "senha")
-	private String senha;
-	
-	@OneToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Quarto quarto;
-	
+
 	public Quarto getQuarto() {
 		return quarto;
 	}
+
 	public void setQuarto(Quarto quarto) {
 		this.quarto = quarto;
 	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getNome() {
-		return nome;
+
+	public int getNumero() {
+		return numero;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
+
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 }
